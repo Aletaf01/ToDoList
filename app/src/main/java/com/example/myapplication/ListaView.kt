@@ -1,40 +1,43 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityListaViewBinding
 
-class ListaView : AppCompatActivity() {
+class ListaView : AppCompatActivity(),TaskOggettoCliccato {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityListaViewBinding
+    private lateinit var taskView: TaskView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-
         binding = ActivityListaViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        taskView = ViewModelProvider(this).get(TaskView::class.java)
+        binding.fab.setOnClickListener {
+            aggiungiTask(null).show(supportFragmentManager, "nuovaTask")
+        }
+        setRecyclerView()
+    }
 
-        setSupportActionBar(binding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_content_lista_view)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+    private fun setRecyclerView(){
+        val ListaView = this
+        taskView.taskOggetti.observe(this){
+            binding.RecyclerViewLista.apply{
+                layoutManager = LinearLayoutManager(applicationContext)
+                adapter = AdapterTaskOggetto(it!!, ListaView)
+            }
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_lista_view)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+    override fun modificaTaskOggetto(taskOggetto: TaskOggetto) {
+        aggiungiTask(taskOggetto).show(supportFragmentManager,"Nuova Task")
     }
+
+    override fun completaTaskOggetto(taskOggetto: TaskOggetto) {
+        taskView.completaTask(taskOggetto)
+    }
+
 }
