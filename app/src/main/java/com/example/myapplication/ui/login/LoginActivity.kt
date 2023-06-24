@@ -17,6 +17,7 @@ import com.example.myapplication.ListaView
 import com.example.myapplication.databinding.ActivityLoginBinding
 
 import com.example.myapplication.R
+import com.example.myapplication.doom
 
 class LoginActivity : AppCompatActivity() {
 
@@ -105,15 +106,17 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
+
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
 
+        if(displayName=="DOOM GUY")
+            startActivity(Intent(this, doom::class.java).apply {})
 
-        startActivity(Intent(this, ListaView::class.java).apply {})
+       else startActivity(Intent(this, ListaView::class.java).apply {})
     }
 
 
@@ -122,9 +125,7 @@ class LoginActivity : AppCompatActivity() {
     }
 }
 
-/**
- * Extension function to simplify setting an afterTextChanged action to EditText components.
- */
+
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
         override fun afterTextChanged(editable: Editable?) {
