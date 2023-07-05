@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityListaViewBinding
 
+// Activity principale per la lista di Tasks
 class ListaView : AppCompatActivity(),TaskOggettoCliccato {
 
     private lateinit var binding: ActivityListaViewBinding

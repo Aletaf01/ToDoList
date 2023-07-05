@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.CellaTaskBinding
 import java.time.format.DateTimeFormatter
 
+// Classe che collega tutti i pezzi di una task
+
 class TaskOggettoViewHolder(
     private val context: Context,
     private val binding: CellaTaskBinding,

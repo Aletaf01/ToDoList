@@ -6,6 +6,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
 
+// Classe che implementa le funzioni per aggiungere e completare una task
 
 class TaskView: ViewModel() {
     var taskOggetti= MutableLiveData<MutableList<TaskOggetto>?>()

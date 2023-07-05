@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.LocalTime
 import kotlin.math.min
 
+// Menu a tendina per aggiunta task con orario
 class aggiungiTask(var taskOggetto: TaskOggetto?) : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAggiungiTaskBinding

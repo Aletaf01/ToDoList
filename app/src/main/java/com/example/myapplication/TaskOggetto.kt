@@ -6,6 +6,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
 
+// Classe per le singole tasks
 class TaskOggetto(
     var nome: String,
     var tempo: LocalTime?,

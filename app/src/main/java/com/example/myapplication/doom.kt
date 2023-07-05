@@ -7,10 +7,11 @@ import android.view.View
 import android.widget.MediaController
 import android.widget.VideoView
 
+// Easter egg
 class doom : AppCompatActivity() {
 
-    var video: VideoView?=null
-    var mediaControllo: MediaController?=null
+    private var video: VideoView?=null
+    private var mediaControllo: MediaController?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +24,7 @@ class doom : AppCompatActivity() {
 
         video!!.setMediaController(mediaControllo)
 
-        video!!.setVideoURI(Uri.parse("https://www.youtube.com/watch?v=d0Dl8HSKMWM"))
+        video!!.setVideoURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.doom))
 
         video!!.start()
     }

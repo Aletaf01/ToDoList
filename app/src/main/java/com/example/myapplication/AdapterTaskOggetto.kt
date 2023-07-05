@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.CellaTaskBinding
 
-
+// Questa classe ci permette di visualizzare la lista di Tasks
 class AdapterTaskOggetto(
     private val taskOggetti: List<TaskOggetto>,
     private val clickListener: TaskOggettoCliccato
